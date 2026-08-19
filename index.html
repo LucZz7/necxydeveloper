@@ -3,176 +3,369 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NECXY DEVELOPER — Android & Full-Stack Developer. Building fast, secure and modern applications." />
-  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="description" content="NECXY DEVELOPER — Full-Stack Developer & Creative Technologist. Building modern web experiences, Android apps and automation tools." />
+  <meta name="theme-color" content="#0b0b18" />
   <title>NECXY DEVELOPER — Portfolio</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Animated background -->
-  <div class="bg" aria-hidden="true">
-    <div class="bg-orb bg-orb--red"></div>
-    <div class="bg-orb bg-orb--dim"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-noise"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-ring"></div>
+    <div class="preloader-text">NECXY</div>
+  </div>
+
+  <!-- Animated background canvas + blobs -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
   <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
   <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <header class="nav" id="nav">
-    <a class="brand" href="#home">
-      <span class="brand-mark">N</span>
-      <span class="brand-text">NECXY<span class="brand-accent">.dev</span></span>
-    </a>
+    <a href="#home" class="nav-logo">NECXY<span class="logo-dot">.</span></a>
     <nav class="nav-links" id="navLinks">
       <a href="#home" class="nav-link active">Home</a>
       <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#terminal" class="nav-link">Dev Zone</a>
+      <a href="#stats" class="nav-link">Stats</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn--solid nav-cta">Hire Me</a>
-    <button class="nav-burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-primary nav-cta">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- ============ HOME / HERO ============ -->
     <section class="hero" id="home">
       <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="badge reveal">
-            <span class="badge-dot"></span> Available for work
-          </div>
-          <h1 class="hero-title reveal">
-            <span class="line"><span class="muted">Building</span></span>
-            <span class="line grad">Digital</span>
-            <span class="line grad">Experiences</span>
+        <div class="hero-text">
+          <div class="hero-badge"><span class="online-dot"></span> Available for work</div>
+          <h1 class="hero-title">
+            <span class="greet">Hi, I'm</span>
+            <span class="name">NECXY</span>
+            <span class="typing-wrap">a <span id="typed"></span><span class="cursor-blink">|</span></span>
           </h1>
-          <p class="hero-sub reveal">
-            I&rsquo;m <strong>NECXY</strong> — an Android &amp; Full-Stack developer crafting fast,
-            secure and modern applications with clean code.
+          <p class="hero-sub">
+            Full-Stack Developer & Creative Technologist crafting sleek, high-performance
+            web apps, Android tools and automation. I turn bold ideas into polished
+            digital products with a premium, modern touch.
           </p>
-          <div class="hero-actions reveal">
-            <a href="#contact" class="btn btn--solid">Get in touch</a>
-            <a href="#about" class="btn btn--ghost">More about me</a>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View My Work <span class="btn-arrow">→</span></a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
           </div>
-          <div class="hero-stats reveal">
-            <div class="stat"><span class="stat-num" data-count="3">0</span><span class="stat-label">Platforms</span></div>
-            <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">Core skills</span></div>
-            <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-label">% Dedication</span></div>
+          <div class="hero-socials">
+            <a href="https://github.com/LucZz7" target="_blank" rel="noopener" class="social-chip" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://t.me/i_necxy" target="_blank" rel="noopener" class="social-chip" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M11.94 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.9 6.68-1.64 7.75c-.12.55-.45.68-.91.42l-2.52-1.86-1.22 1.17c-.13.13-.25.25-.51.25l.18-2.57 4.67-4.22c.2-.18-.04-.28-.31-.1l-5.78 3.64-2.48-.78c-.54-.17-.55-.54.11-.8l9.7-3.74c.45-.17.84.11.71.64Z"/></svg>
+              <span>Telegram</span>
+            </a>
+            <a href="https://instagram.com/i_necxy" target="_blank" rel="noopener" class="social-chip" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.35 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.35-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.35-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.35 2.23-.41 1.27-.06 1.65-.07 4.85-.07Zm0 1.8c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.19.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.19-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.19.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.19.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.19-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.19.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.19a3.63 3.63 0 0 0-.88-1.35 3.63 3.63 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.19-.4-1.24-.06-1.61-.07-4.76-.07Zm0 3.06a5.98 5.98 0 1 1 0 11.96 5.98 5.98 0 0 1 0-11.96Zm0 9.86a3.88 3.88 0 1 0 0-7.76 3.88 3.88 0 0 0 0 7.76Zm6.22-10.1a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0Z"/></svg>
+              <span>Instagram</span>
+            </a>
           </div>
         </div>
-        <div class="hero-visual reveal">
-          <div class="avatar-ring">
-            <div class="ring-spin"></div>
-            <img src="assets/profile.png" alt="NECXY Developer" class="avatar" />
+
+        <div class="hero-visual">
+          <div class="profile-wrap" data-tilt>
+            <div class="profile-glow"></div>
+            <div class="profile-ring ring-1"></div>
+            <div class="profile-ring ring-2"></div>
+            <div class="profile-ring ring-3"></div>
+            <img id="profileImg" class="profile-img" alt="NECXY profile" />
           </div>
-          <div class="floating-chip chip--tg tooltip" data-tip="Telegram @i_necxy">
-            <svg class="ic" viewBox="0 0 24 24"><path d="M9.9 15.6 9.4 22l2.9-2.8 4.2 3.1c.8.4 1.4.2 1.6-.7l2.9-13.7c.3-1.2-.5-1.7-1.3-1.4L2.2 12.6c-1.2.5-1.1 1.1-.2 1.4l4.6 1.4L17.3 7c.5-.3 1-.1.6.2L9.9 15.6Z"/></svg>
-          </div>
-          <div class="floating-chip chip--ig tooltip" data-tip="Instagram @i_necxy">
-            <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg>
-          </div>
-          <div class="floating-chip chip--wa tooltip" data-tip="WhatsApp +91 9699433980">
-            <svg class="ic" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Zm4.5 12.3c-.2.6-1.2 1.1-1.7 1.1-.4 0-1 .2-3.3-1.3-2.8-1.9-4.2-5-4.4-5.3-.2-.3-.5-1 .1-1.6l.5-.5c.2-.2.3-.2.5-.1l1.5.8c.2.1.3.2.3.4l.4 1.2-1.7 1.7c.6 1.2 1.8 2.3 3 2.9l1.6-1.8 1 .3c.2 0 .4.2.5.3l.8 1.5c.1.2.1.3 0 .4Z"/></svg>
-          </div>
+          <div class="floating-tag tag-1"><span class="tag-icon">&#60;/&#62;</span> Full-Stack</div>
+          <div class="floating-tag tag-2"><span class="tag-icon">&#9650;</span> Android Dev</div>
+          <div class="floating-tag tag-3"><span class="tag-icon">✦</span> Creative</div>
         </div>
       </div>
-      <div class="scroll-hint reveal"><span>Scroll</span><span class="scroll-line"></span></div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+        <div class="mouse"><span class="wheel"></span></div>
+        <span class="scroll-text">Scroll</span>
+      </a>
     </section>
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
-      <div class="section-head reveal">
-        <span class="section-tag">01 — About</span>
-        <h2 class="section-title">Who I am</h2>
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="section-head">
+        <span class="section-kicker">01 / About</span>
+        <h2 class="section-title">Who I Am</h2>
       </div>
       <div class="about-grid">
-        <div class="glass-card reveal">
-          <p class="about-lead">
-            Passionate about turning ideas into fast, reliable and beautifully engineered
-            digital products.
+        <div class="glass-card about-card">
+          <h3 class="card-title">A developer obsessed with the details</h3>
+          <p class="card-text">
+            I'm <strong>Mark</strong>, better known online as <strong>NECXY DEVELOPER</strong>.
+            I build modern, responsive web experiences and Android applications with a
+            focus on clean code, buttery-smooth animations and beautiful interfaces.
           </p>
-          <p class="about-text">
-            I&rsquo;m a self-driven developer specialised in building Android applications and
-            full-stack web platforms — from concept and design to deployment. I care deeply about
-            clean architecture, performance and delivering experiences that feel effortless.
+          <p class="card-text">
+            From full-stack web apps that pull live data from real APIs, to Android tools
+            and automation workflows — I love solving problems at the intersection of
+            design and engineering.
           </p>
+          <div class="about-strip">
+            <div class="about-chip"><span class="chip-key">Name</span><span class="chip-val">Mark</span></div>
+            <div class="about-chip"><span class="chip-key">Brand</span><span class="chip-val">NECXY</span></div>
+            <div class="about-chip"><span class="chip-key">Focus</span><span class="chip-val">Web + Mobile</span></div>
+            <div class="about-chip"><span class="chip-key">Status</span><span class="chip-val chip-live"><span class="online-dot"></span> Open</span></div>
+          </div>
         </div>
-        <div class="glass-card skills reveal">
-          <h3 class="card-title">Core skills</h3>
-          <div class="skill">
-            <div class="skill-top"><span>Android Development</span><span class="pct">95%</span></div>
-            <div class="bar"><span data-w="95"></span></div>
+        <div class="glass-card about-card">
+          <h3 class="card-title">What I Do</h3>
+          <ul class="do-list">
+            <li class="do-item"><span class="do-num">01</span><div><strong>Web Development</strong><p>Responsive, SEO-friendly sites & SPA dashboards</p></div></li>
+            <li class="do-item"><span class="do-num">02</span><div><strong>Android Apps</strong><p>Native-feel apps with APIs & modern UI</p></div></li>
+            <li class="do-item"><span class="do-num">03</span><div><strong>API Integration</strong><p>Live data, REST & real-time automation</p></div></li>
+            <li class="do-item"><span class="do-num">04</span><div><strong>UI / UX Design</strong><p>Glassmorphism, dark themes & micro-animations</p></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="section-head">
+        <span class="section-kicker">02 / Skills</span>
+        <h2 class="section-title">Tech Stack</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="glass-card skill-card">
+          <div class="skill-top"><span class="skill-icon">&#60;&#62;</span><h3>Frontend</h3></div>
+          <div class="skill"><span class="skill-name">HTML / CSS</span><div class="bar"><i data-w="95"></i></div><span class="skill-pct">95%</span></div>
+          <div class="skill"><span class="skill-name">JavaScript</span><div class="bar"><i data-w="90"></i></div><span class="skill-pct">90%</span></div>
+          <div class="skill"><span class="skill-name">React</span><div class="bar"><i data-w="80"></i></div><span class="skill-pct">80%</span></div>
+        </div>
+        <div class="glass-card skill-card">
+          <div class="skill-top"><span class="skill-icon">&#9798;</span><h3>Backend</h3></div>
+          <div class="skill"><span class="skill-name">Node.js / Express</span><div class="bar"><i data-w="85"></i></div><span class="skill-pct">85%</span></div>
+          <div class="skill"><span class="skill-name">REST APIs</span><div class="bar"><i data-w="88"></i></div><span class="skill-pct">88%</span></div>
+          <div class="skill"><span class="skill-name">Firebase</span><div class="bar"><i data-w="75"></i></div><span class="skill-pct">75%</span></div>
+        </div>
+        <div class="glass-card skill-card">
+          <div class="skill-top"><span class="skill-icon">&#9906;</span><h3>Mobile & Tools</h3></div>
+          <div class="skill"><span class="skill-name">Android (APK)</span><div class="bar"><i data-w="82"></i></div><span class="skill-pct">82%</span></div>
+          <div class="skill"><span class="skill-name">Git / GitHub</span><div class="bar"><i data-w="85"></i></div><span class="skill-pct">85%</span></div>
+          <div class="skill"><span class="skill-name">Automation</span><div class="bar"><i data-w="78"></i></div><span class="skill-pct">78%</span></div>
+        </div>
+      </div>
+      <div class="tools">
+        <span class="tool-chip">JavaScript</span>
+        <span class="tool-chip">Node.js</span>
+        <span class="tool-chip">React</span>
+        <span class="tool-chip">Express</span>
+        <span class="tool-chip">Firebase</span>
+        <span class="tool-chip">SQL</span>
+        <span class="tool-chip">Git</span>
+        <span class="tool-chip">Vercel</span>
+        <span class="tool-chip">REST</span>
+        <span class="tool-chip">Android</span>
+      </div>
+    </section>
+
+    <!-- ============ HACKER / TERMINAL ============ -->
+    <section class="section" id="terminal">
+      <div class="section-head">
+        <span class="section-kicker">Dev Zone</span>
+        <h2 class="section-title">Hacker&#8217;s Corner</h2>
+        <p class="section-sub">Terminal, Termux, Linux &amp; the tools I geek out on.</p>
+      </div>
+
+      <div class="terminal-grid">
+        <div class="glass-card term-card">
+          <div class="term-header">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">necxy@kali ~ $</span>
           </div>
-          <div class="skill">
-            <div class="skill-top"><span>Firebase &amp; Backend</span><span class="pct">90%</span></div>
-            <div class="bar"><span data-w="90"></span></div>
+          <div class="term-body" id="termBody">
+            <pre class="term-pre"><span class="term-prompt">$</span> whoami
+<span class="term-out">necxy</span></pre>
           </div>
-          <div class="skill">
-            <div class="skill-top"><span>Frontend (HTML/CSS/JS)</span><span class="pct">92%</span></div>
-            <div class="bar"><span data-w="92"></span></div>
-          </div>
-          <div class="skill">
-            <div class="skill-top"><span>REST APIs &amp; Integration</span><span class="pct">88%</span></div>
-            <div class="bar"><span data-w="88"></span></div>
-          </div>
-          <div class="skill">
-            <div class="skill-top"><span>UI / UX &amp; Design Systems</span><span class="pct">85%</span></div>
-            <div class="bar"><span data-w="85"></span></div>
+        </div>
+
+        <div class="glass-card hacker-icons-card">
+          <h3 class="card-title">Animated Dev Icons</h3>
+          <div class="hacker-icons">
+            <div class="h-icon" title="Terminal">
+              <span class="hi">&gt;_</span>
+              <span class="h-label">Terminal</span>
+            </div>
+            <div class="h-icon" title="Termux">
+              <span class="hi tx">#</span>
+              <span class="h-label">Termux</span>
+            </div>
+            <div class="h-icon" title="Linux">
+              <span class="hi lx">L</span>
+              <span class="h-label">Linux</span>
+            </div>
+            <div class="h-icon" title="Kali Linux">
+              <span class="hi kali">K</span>
+              <span class="h-label">Kali</span>
+            </div>
+            <div class="h-icon" title="Root">
+              <span class="hi root">#</span>
+              <span class="h-label">Root</span>
+            </div>
+            <div class="h-icon" title="Bash">
+              <span class="hi bash">$</span>
+              <span class="h-label">Bash</span>
+            </div>
+            <div class="h-icon" title="SSH">
+              <span class="hi ssh">ssh</span>
+              <span class="h-label">SSH</span>
+            </div>
+            <div class="h-icon" title="Git">
+              <span class="hi git">git</span>
+              <span class="h-label">Git</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-      <div class="section-head reveal">
-        <span class="section-tag">02 — Contact</span>
-        <h2 class="section-title">Let&rsquo;s connect</h2>
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="section-head">
+        <span class="section-kicker">03 / Projects</span>
+        <h2 class="section-title">Featured Work</h2>
+      </div>
+      <div class="projects-grid">
+        <article class="glass-card project-card">
+          <div class="project-thumb thumb-necstore">
+            <div class="thumb-badge">Live Data</div>
+            <span class="thumb-logo">N</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">NECSTORE</h3>
+            <p class="project-desc">Full-stack free-games tracker. Pulls 100%-off deals live from the Epic Games endpoint and GamerPower API, with smart caching and a clean multi-page UI.</p>
+            <div class="project-tags"><span>Node.js</span><span>Express</span><span>REST API</span><span>HTML/CSS/JS</span></div>
+            <div class="project-links">
+              <a href="https://github.com/LucZz7/necstore" target="_blank" rel="noopener" class="btn btn-small btn-ghost">View Code</a>
+            </div>
+          </div>
+        </article>
+        <article class="glass-card project-card">
+          <div class="project-thumb thumb-nexa">
+            <div class="thumb-badge">Android</div>
+            <span class="thumb-logo">N</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">NEXA</h3>
+            <p class="project-desc">Android video-generation app using Hugging Face AI models, with length, quality & aspect-ratio selectors, history and a minimalist red/black UI.</p>
+            <div class="project-tags"><span>Android</span><span>Hugging Face</span><span>AI</span><span>Kotlin/Java</span></div>
+            <div class="project-links">
+              <a href="#contact" class="btn btn-small btn-ghost">More Info</a>
+            </div>
+          </div>
+        </article>
+        <article class="glass-card project-card">
+          <div class="project-thumb thumb-tools">
+            <div class="thumb-badge">Automation</div>
+            <span class="thumb-logo">T</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Automation Toolkit</h3>
+            <p class="project-desc">A collection of custom automation scripts and utilities built to streamline repetitive workflows and integrate live data into everyday tools.</p>
+            <div class="project-tags"><span>JavaScript</span><span>Node.js</span><span>CLI</span><span>APIs</span></div>
+            <div class="project-links">
+              <a href="#contact" class="btn btn-small btn-ghost">More Info</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="section" id="stats">
+      <div class="section-head">
+        <span class="section-kicker">04 / Stats</span>
+        <h2 class="section-title">By The Numbers</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="glass-card stat-card"><span class="stat-num" data-count="25">0</span><span class="stat-plus">+</span><span class="stat-label">Projects Built</span></div>
+        <div class="glass-card stat-card"><span class="stat-num" data-count="10">0</span><span class="stat-plus">+</span><span class="stat-label">Technologies</span></div>
+        <div class="glass-card stat-card"><span class="stat-num" data-count="3">0</span><span class="stat-plus">+</span><span class="stat-label">Years Coding</span></div>
+        <div class="glass-card stat-card"><span class="stat-num" data-count="100">0</span><span class="stat-plus">%</span><span class="stat-label">Commitment</span></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="section-head">
+        <span class="section-kicker">05 / Contact</span>
+        <h2 class="section-title">Let's Work Together</h2>
+        <p class="section-sub">Have a project in mind? Reach out — I usually reply fast.</p>
       </div>
       <div class="contact-grid">
-        <a class="glass-card contact-card reveal" href="https://t.me/i_necxy" target="_blank" rel="noopener">
-          <span class="c-icon c-icon--tg"><svg class="ic" viewBox="0 0 24 24"><path d="M9.9 15.6 9.4 22l2.9-2.8 4.2 3.1c.8.4 1.4.2 1.6-.7l2.9-13.7c.3-1.2-.5-1.7-1.3-1.4L2.2 12.6c-1.2.5-1.1 1.1-.2 1.4l4.6 1.4L17.3 7c.5-.3 1-.1.6.2L9.9 15.6Z"/></svg></span>
-          <div class="c-body"><span class="c-label">Telegram</span><span class="c-value">@i_necxy</span></div>
-          <span class="c-arrow">&#8599;</span>
-        </a>
-        <a class="glass-card contact-card reveal" href="https://t.me/+Jo-hz3Kkf3VkY2Y1" target="_blank" rel="noopener">
-          <span class="c-icon c-icon--ch"><svg class="ic" viewBox="0 0 24 24"><path d="M4 6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9l-4 4v-4a3 3 0 0 1-1-2V6Z"/></svg></span>
-          <div class="c-body"><span class="c-label">Telegram Channel</span><span class="c-value">Join the channel</span></div>
-          <span class="c-arrow">&#8599;</span>
-        </a>
-        <a class="glass-card contact-card reveal" href="https://wa.me/919699433980" target="_blank" rel="noopener">
-          <span class="c-icon c-icon--wa"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z"/></svg></span>
-          <div class="c-body"><span class="c-label">WhatsApp</span><span class="c-value">+91 96994 33980</span></div>
-          <span class="c-arrow">&#8599;</span>
-        </a>
-        <a class="glass-card contact-card reveal" href="https://instagram.com/i_necxy" target="_blank" rel="noopener">
-          <span class="c-icon c-icon--ig"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg></span>
-          <div class="c-body"><span class="c-label">Instagram</span><span class="c-value">@i_necxy</span></div>
-          <span class="c-arrow">&#8599;</span>
-        </a>
+        <div class="contact-info">
+          <a href="https://t.me/i_necxy" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon tg">T</span>
+            <div><span class="contact-label">Telegram</span><span class="contact-val">@i_necxy</span></div>
+          </a>
+          <a href="https://instagram.com/i_necxy" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon ig">IG</span>
+            <div><span class="contact-label">Instagram</span><span class="contact-val">@i_necxy</span></div>
+          </a>
+          <a href="https://github.com/LucZz7" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon gh">GH</span>
+            <div><span class="contact-label">GitHub</span><span class="contact-val">LucZz7</span></div>
+          </a>
+          <a href="https://wa.me/919699433980" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-icon wa">WA</span>
+            <div><span class="contact-label">WhatsApp</span><span class="contact-val">9699433980</span></div>
+          </a>
+        </div>
+        <div class="glass-card contact-cta-card">
+          <div class="cta-icon">&#8599;</div>
+          <h3 class="card-title">Explore More Projects</h3>
+          <p class="card-text">Follow my Telegram channel for the latest drops, source code, tools and exclusive updates before anywhere else.</p>
+          <a href="https://t.me/+Jo-hz3Kkf3VkY2Y1" target="_blank" rel="noopener" class="btn btn-primary btn-full">
+            Explore More Projects <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="footer-inner">
-      <span class="brand-text">NECXY<span class="brand-accent">.dev</span></span>
-      <span class="footer-note">Built with precision. &copy; <span id="year"></span> NECXY DEVELOPER</span>
+      <a href="#home" class="footer-logo">NECXY<span>.</span></a>
+      <p class="footer-text">Designed & built with care by <strong>NECXY DEVELOPER</strong>.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/LucZz7" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+        <a href="https://t.me/i_necxy" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+        <a href="https://instagram.com/i_necxy" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> NECXY. All rights reserved.</p>
     </div>
   </footer>
 
+  <script src="js/profile.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
