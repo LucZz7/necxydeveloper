@@ -4,9 +4,11 @@
 (function () {
   'use strict';
 
+  /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- Custom cursor ---------- */
   var cursor = document.getElementById('cursor');
   var cursorDot = document.getElementById('cursorDot');
   var lerp = { x: 0, y: 0 };
@@ -19,6 +21,7 @@
       lerp.y = e.clientY;
     });
 
+    // Trailing ring cursor
     var t = { x: 0, y: 0 };
     (function trail() {
       t.x += (lerp.x - t.x) * 0.12;
@@ -28,6 +31,7 @@
       requestAnimationFrame(trail);
     })();
 
+    // Hover grow on interactive elements
     var hoverables = 'a, button, .contact-card, .floating-chip';
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(hoverables)) cursor.classList.add('hovered');
@@ -37,6 +41,7 @@
     });
   }
 
+  /* ---------- Nav scroll state ---------- */
   var nav = document.getElementById('nav');
   function onScroll() {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -44,11 +49,13 @@
   window.addEventListener('scroll', onScroll);
   onScroll();
 
+  /* ---------- Burger menu ---------- */
   var burger = document.getElementById('burger');
   if (burger) {
     burger.addEventListener('click', function () {
       nav.classList.toggle('open');
     });
+    // close on link tap
     document.querySelectorAll('#navLinks a').forEach(function (a) {
       a.addEventListener('click', function () {
         nav.classList.remove('open');
@@ -56,6 +63,7 @@
     });
   }
 
+  /* ---------- Active nav link on scroll ---------- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('.nav-link');
   var sectionObserver = new IntersectionObserver(function (entries) {
@@ -69,6 +77,7 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(function (s) { sectionObserver.observe(s); });
 
+  /* ---------- Reveal on scroll ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   var revealObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -80,6 +89,7 @@
   }, { threshold: 0.12 });
   revealEls.forEach(function (el) { revealObserver.observe(el); });
 
+  /* ---------- Skill bars ---------- */
   var bars = document.querySelectorAll('.bar span');
   var barObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -91,6 +101,7 @@
   }, { threshold: 0.5 });
   bars.forEach(function (b) { barObserver.observe(b); });
 
+  /* ---------- Counter numbers ---------- */
   var counters = document.querySelectorAll('[data-count]');
   var counterObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -113,6 +124,7 @@
   }, { threshold: 0.6 });
   counters.forEach(function (c) { counterObserver.observe(c); });
 
+  /* ---------- Tilt effect on cards ---------- */
   var cards = document.querySelectorAll('.glass-card');
   cards.forEach(function (card) {
     card.addEventListener('mousemove', function (e) {
