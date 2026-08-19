@@ -7,21 +7,28 @@
   <meta name="theme-color" content="#0A0A0A" />
   <title>NECXY DEVELOPER — Portfolio</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Animated background -->
   <div class="bg" aria-hidden="true">
     <div class="bg-orb bg-orb--red"></div>
     <div class="bg-orb bg-orb--dim"></div>
     <div class="bg-grid"></div>
     <div class="bg-noise"></div>
   </div>
+
+  <!-- Custom cursor -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-dot" id="cursorDot"></div>
 
+  <!-- Navigation -->
   <header class="nav" id="nav">
     <a class="brand" href="#home">
       <span class="brand-mark">N</span>
@@ -39,6 +46,7 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-inner">
         <div class="hero-copy">
@@ -51,7 +59,7 @@
             <span class="line grad">Experiences</span>
           </h1>
           <p class="hero-sub reveal">
-            I'm <strong>NECXY</strong> — an Android &amp; Full-Stack developer crafting fast,
+            I&rsquo;m <strong>NECXY</strong> — an Android &amp; Full-Stack developer crafting fast,
             secure and modern applications with clean code.
           </p>
           <div class="hero-actions reveal">
@@ -67,7 +75,7 @@
         <div class="hero-visual reveal">
           <div class="avatar-ring">
             <div class="ring-spin"></div>
-            <img src="assets/profile.webp" alt="NECXY Developer" class="avatar" />
+            <img src="assets/profile.png" alt="NECXY Developer" class="avatar" />
           </div>
           <div class="floating-chip chip--tg tooltip" data-tip="Telegram @i_necxy">
             <svg class="ic" viewBox="0 0 24 24"><path d="M9.9 15.6 9.4 22l2.9-2.8 4.2 3.1c.8.4 1.4.2 1.6-.7l2.9-13.7c.3-1.2-.5-1.7-1.3-1.4L2.2 12.6c-1.2.5-1.1 1.1-.2 1.4l4.6 1.4L17.3 7c.5-.3 1-.1.6.2L9.9 15.6Z"/></svg>
@@ -83,6 +91,7 @@
       <div class="scroll-hint reveal"><span>Scroll</span><span class="scroll-line"></span></div>
     </section>
 
+    <!-- ABOUT -->
     <section class="about" id="about">
       <div class="section-head reveal">
         <span class="section-tag">01 — About</span>
@@ -95,26 +104,42 @@
             digital products.
           </p>
           <p class="about-text">
-            I'm a self-driven developer specialised in building Android applications and
+            I&rsquo;m a self-driven developer specialised in building Android applications and
             full-stack web platforms — from concept and design to deployment. I care deeply about
             clean architecture, performance and delivering experiences that feel effortless.
           </p>
         </div>
         <div class="glass-card skills reveal">
           <h3 class="card-title">Core skills</h3>
-          <div class="skill"><div class="skill-top"><span>Android Development</span><span class="pct">95%</span></div><div class="bar"><span data-w="95"></span></div></div>
-          <div class="skill"><div class="skill-top"><span>Firebase &amp; Backend</span><span class="pct">90%</span></div><div class="bar"><span data-w="90"></span></div></div>
-          <div class="skill"><div class="skill-top"><span>Frontend (HTML/CSS/JS)</span><span class="pct">92%</span></div><div class="bar"><span data-w="92"></span></div></div>
-          <div class="skill"><div class="skill-top"><span>REST APIs &amp; Integration</span><span class="pct">88%</span></div><div class="bar"><span data-w="88"></span></div></div>
-          <div class="skill"><div class="skill-top"><span>UI / UX &amp; Design Systems</span><span class="pct">85%</span></div><div class="bar"><span data-w="85"></span></div></div>
+          <div class="skill">
+            <div class="skill-top"><span>Android Development</span><span class="pct">95%</span></div>
+            <div class="bar"><span data-w="95"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>Firebase &amp; Backend</span><span class="pct">90%</span></div>
+            <div class="bar"><span data-w="90"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>Frontend (HTML/CSS/JS)</span><span class="pct">92%</span></div>
+            <div class="bar"><span data-w="92"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>REST APIs &amp; Integration</span><span class="pct">88%</span></div>
+            <div class="bar"><span data-w="88"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-top"><span>UI / UX &amp; Design Systems</span><span class="pct">85%</span></div>
+            <div class="bar"><span data-w="85"></span></div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="contact" id="contact">
       <div class="section-head reveal">
         <span class="section-tag">02 — Contact</span>
-        <h2 class="section-title">Let's connect</h2>
+        <h2 class="section-title">Let&rsquo;s connect</h2>
       </div>
       <div class="contact-grid">
         <a class="glass-card contact-card reveal" href="https://t.me/i_necxy" target="_blank" rel="noopener">
